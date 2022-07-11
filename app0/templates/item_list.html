@@ -1,0 +1,78 @@
+{% extends 'admin_layout.html' %}
+
+{% block content %}
+<div class="container">
+    <div style="margin-bottom: 20px" class="clearfix">
+        <a class="btn btn-success" href="/item/add">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            新增商品
+        </a>
+
+
+        <div style="float:right ;width: 400px">
+            <form method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="搜索......" name="q" value="{{search_data}}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+           <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+            商品管理
+        </div>
+
+        <!-- Table -->
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>商品ID</th>
+                <th>商品名称</th>
+                <th>商品类别</th>
+                <th>商品价格</th>
+                <th>商品数量</th>
+                <th>所属店铺</th>
+                <th>所属仓库</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for obj in users %}
+            <tr>
+                <td>{{obj.id}}</td>
+                <td>{{obj.name}}</td>
+                <td>{{obj.get_category_display}}</td>
+                <td>{{obj.price}}</td>
+                <td>{{obj.count}}</td>
+                <td>{{obj.shop}}</td>
+                <td>{{obj.warehouse}}</td>
+
+                <td>
+                    <a class="btn btn-info btn-xs" href="/item/{{obj.id}}/edit">修改</a>
+                    <a class="btn btn-danger btn-xs" href="/item/{{obj.id}}/delete">删除</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+
+    </div >
+    <div class="clearfix" >
+            <ul class="pagination">
+                {{ page_string }}
+            </ul>
+    </div>
+</div>
+
+{% endblock %}

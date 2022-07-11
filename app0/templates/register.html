@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <!-- https://fontawesome.com/v5/search?s=solid%2Cbrands -->
+</head>
+<body>
+    <img src="{% static 'img/wave.png' %}" class="wave" alt="">
+    <div class="container">
+        <div class="img">
+            <img src="{% static 'img/bg.svg' %}" alt="">
+        </div>
+        <div class="login-content">
+            <form action="/register/" method="post">
+               {% csrf_token %}
+                <img src="{% static 'img/avatar.svg' %}" alt="">
+                <h2 class="title">注册</h2>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <h5>账号</h5>
+                        <input type="text" class="input" name="id">
+                    </div>
+                </div>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <h5>姓名</h5>
+                        <input type="text" class="input" name="name">
+                    </div>
+                </div>
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <h5>密码</h5>
+                        <input type="password" class="input" name="f_pwd">
+                    </div>
+                </div>
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <h5>确认密码</h5>
+                        <input type="password" class="input" name="s_pwd">
+                    </div>
+                </div>
+
+                <div class="a-justify">
+                    <a href="/" class="a-right">已有账户？立即登录</a>
+
+                </div>
+
+
+                <input type="submit" class="btn" value="立即注册">
+                <span style="color: #761c19"> {{error}} </span>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

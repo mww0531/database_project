@@ -1,0 +1,77 @@
+{% extends 'admin_layout.html' %}
+
+{% block content %}
+<div class="container">
+    <div style="margin-bottom: 20px" class="clearfix">
+        <a class="btn btn-success" href="/shop/add">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            新增店铺
+        </a>
+
+
+        <div style="float:right ;width: 400px">
+            <form method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="搜索......" name="q" value="{{search_data}}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+            店铺管理
+        </div>
+
+        <!-- Table -->
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>店铺ID</th>
+                <th>店铺名称</th>
+                <th>店铺老板</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for obj in users %}
+            <tr>
+                <td>{{obj.id}}</td>
+                <td>{{obj.name}}</td>
+                <td>{{obj.boss}}</td>
+                <td>
+                    <a class="btn btn-info btn-xs" href="/shop/{{obj.id}}/edit">修改</a>
+                    <a class="btn btn-danger btn-xs" href="/shop/{{obj.id}}/delete">删除</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+        <!--        {% if 2 > 5 %}-->
+        <!--        noahi-->
+        <!--        {% else %}-->
+        <!--        sb-->
+        <!--        {% endif %}-->
+
+
+        <!--        style="text-align:center" -->
+
+    </div>
+    <div class="clearfix" >
+            <ul class="pagination">
+                {{ page_string }}
+            </ul>
+    </div>
+</div>
+
+{% endblock %}

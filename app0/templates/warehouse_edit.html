@@ -1,0 +1,30 @@
+{% extends 'admin_layout.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                修改仓库信息
+            </h3>
+        </div>
+        <div class="panel-body">
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {% for field in form %}
+                    {% if field.label != '仓库ID' %}
+                        <div class="form-group">
+                            <label>{{field.label}}</label>
+                            {{ field }}
+                            <span style="color: red">{{field.errors.0}}</span>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                <button type="submit" class="btn btn-info">提 交</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

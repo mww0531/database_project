@@ -1,0 +1,91 @@
+{% extends 'user_layout.html' %}
+
+{% block content %}
+<div class="container">
+
+    <div style="margin-bottom: 20px" class="clearfix">
+        <form method="get">
+
+        </form>
+
+        <div>
+            <form method="get">
+                <div style="float:left">
+                    <select name="category" class="form-control" style="width: 105px">
+                        <option value="0">商品类别</option>
+                        <option value="1" {% if cate == 1 %} selected="selected" {% endif %}>食品</option>
+                        <option value="2" {% if cate == 2 %} selected="selected" {% endif %}>服装</option>
+                        <option value="3" {% if cate == 3 %} selected="selected" {% endif %}>日用品</option>
+                        <option value="4" {% if cate == 4 %} selected="selected" {% endif %}>家具</option>
+                        <option value="5" {% if cate == 5 %} selected="selected" {% endif %}>电子设备</option>
+                        <option value="6" {% if cate == 6 %} selected="selected" {% endif %}>纺织品</option>
+                        <option value="7" {% if cate == 7 %} selected="selected" {% endif %}>图书</option>
+                        <option value="8" {% if cate == 8 %} selected="selected" {% endif %}>其他</option>
+                    </select>
+                </div>
+
+                <div style="float:left; margin-left: 20px " >
+                    <select name="sort" class="form-control" style="width: 145px">
+                        <option value="0">排序</option>
+                        <option value="1" {% if sort == 1 %} selected="selected" {% endif %}>按价格升序显示</option>
+                        <option value="2" {% if sort == 2 %} selected="selected" {% endif %}>按价格降序显示</option>
+                    </select>
+                </div>
+
+                <div class="input-group" style="width: 400px; float:right">
+                    <input type="text" class="form-control" placeholder="搜索......" name="q" value="{{search_data}}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+            商品列表
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>商品名称</th>
+                <th>商品类别</th>
+                <th>商品价格</th>
+                <th>商品剩余数量</th>
+                <th>店铺名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for obj in users %}
+            <tr>
+                <td>{{obj.name}}</td>
+                <td>{{obj.get_category_display}}</td>
+                <td>{{obj.price}}</td>
+                <td>{{obj.count}}</td>
+                <td>{{obj.shop.name}}</td>
+                <td>
+                    <a class="btn btn-info btn-xs" href="/item/{{obj.id}}/buy">购买</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div >查询到{{count}}个商品</div>
+
+    <div class="clearfix">
+        <ul class="pagination">
+            {{ page_string }}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
